@@ -123,6 +123,6 @@ def send_ipmitool_command(*cmds):
         err_message = "failed to send ipmitool command: {0}".format(dst_cmd)
         logger.error(err_message)
         lock.release()
-        sys.exit(1)
+        return -1
     lock.release()
     return stdout

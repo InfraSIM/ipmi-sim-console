@@ -38,6 +38,8 @@ def dump_all_sdrs(file_name):
 def read_sensor_raw_value(sensor_num):
     result = common.send_ipmitool_command('raw', '0x04', '0x2d',
                                           hex(sensor_num))
+    if result == -1:
+        return 0
     value = result.split()[0]
     info = "sensor num: {0} value: 0x{1}".format(hex(sensor_num), value)
     common.logger.info(info)
